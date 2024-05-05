@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# Welcome Message
+printf "**********************************************\n"
+printf "   AllStarLink Node Connection Management\n"
+printf "**********************************************\n"
+printf "This script allows you to seamlessly connect\n"
+printf "and disconnect AllStarLink nodes. Enter a node\n"
+printf "number to connect, press Enter to disconnect, and\n"
+printf "repeat. Type 'q' and press Enter to exit.\n"
+printf "**********************************************\n"
+
+while true; do
+    # Read input for AllStarLink node number
+    printf "Enter AllStarLink Node Number (or 'q' to quit): " 
+    read -r node_number
+
+    # Check if 'q' was entered to quit the script
+    if [[ "$node_number" == "q" ]]; then
+        echo "Exiting the script."
+        break
+    fi
+
+    # Connect to the entered node
+    asterisk -rx "rpt fun 49947 *3$node_number"
+    printf "Connecting AllStarLink Node %s\n" "$node_number"
+
+    # Wait for user to press Enter to disconnect
+    printf "Press Enter to disconnect from Node $node_number..."
+    read -r 
+
+    # Disconnect from the entered node
+    asterisk -rx "rpt fun 49947 *1$node_number"
+    printf "Disconnecting AllStarLink Node %s\n" "$node_number"
+done
+

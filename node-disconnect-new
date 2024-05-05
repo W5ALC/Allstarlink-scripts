@@ -1,0 +1,21 @@
+#!/bin/bash -x
+
+# Define the main node
+MAINNODE="49947"
+
+# Define an array of NODES to keep connected
+NODES=("1027" "W5ALC" "Linux-Home")
+
+# Retrieve the NODE information from "rpt stats $MAINNODE" output
+NODE_INFO=$(asterisk -rx "rpt stats $MAINNODE" | grep "currently connected")
+
+# Extract the connected nodes
+IFS=', ' read -r -a connected_nodes <<< "${NODE_INFO#*: }"
+
+# Loop through connected nodes and disconnect if not defined in NODES array
+for node in "${connected_nodes[@]}"; do
+    if [[ "$node" != "$MAINNODE" ]] && ! [[ "${NODES[*]}" =~ $node ]]; then
+        asterisk -rx "rpt fun $MAINNODE *1$node"
+    fi
+done
+

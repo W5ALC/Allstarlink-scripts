@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Define your AllStarLink node numbers
+MAIN_NODE=49947
+PRIVATE_NODE=1027
+
+# Function to check if node 1027 is currently connected to 49947
+is_connected() {
+    asterisk -rx "rpt stats $MAIN_NODE" | grep currently | sed 's|.*: ||' | grep -q "$PRIVATE_NODE"
+}
+
+# Function to connect node 1027 to 49947
+connect_nodes() {
+    asterisk -rx "rpt fun 49947 *31027"
+    printf "Connecting AllStarLink Node %s to Node %s\n" "$PRIVATE_NODE" "$MAIN_NODE"
+}
+
+# Function to disconnect node 1027 from 49947
+disconnect_nodes() {
+    asterisk -rx "rpt fun 49947 *11027"
+    printf "Disconnecting AllStarLink Node %s from Node %s\n" "$PRIVATE_NODE" "$MAIN_NODE"
+}
+
+# Check if node 1027 is connected and toggle the connection state
+if is_connected; then
+    disconnect_nodes
+else
+    connect_nodes
+fi
+

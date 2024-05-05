@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Path to the DVSwitch script
+dvswitch_script="/opt/MMDVM_Bridge/dvswitch.sh"
+# Function to run the DVSwitch script with tune and variable digits
+run_tune() {
+  digits="$1"
+  "$dvswitch_script" tune "$digits"
+}
+
+
+        while true; do
+          read -r -p "Enter the talkgroup (or 'q' to disconnect all links): " digits
+          if [ "$digits" = "q" ]; then
+	    run_tune 4000
+	    run_tune 3201975
+            break
+          fi
+          run_tune "$digits"
+        done
