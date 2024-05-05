@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 
 # Define the main node
 MAINNODE="49947"
