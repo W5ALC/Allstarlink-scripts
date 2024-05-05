@@ -2,9 +2,9 @@
 
 config_file="/opt/MMDVM_Bridge/MMDVM_Bridge.ini"
 brandmeister_address="3103.master.brandmeister.network"
-brandmeister_password="phiks420"
+brandmeister_password="password"
 tgif_address="tgif.network"
-tgif_password="865C023AF63F2AFB"
+tgif_password="password"
 
 toggle_master() {
     if grep -q "^Address=$brandmeister_address" "$config_file"; then
