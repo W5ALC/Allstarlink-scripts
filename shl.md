@@ -35,6 +35,7 @@ python3 net_script.py -t topics.txt -s shl_announcements.txt
 ## Command Line Arguments
 -t, --topic: File containing net topics.
 	     If not provided, default topics will be used.
+
 -s, --shl: File containing SkyHubLink announcements.
 	   If not provided, default announcements will be used.
 
