@@ -70,7 +70,7 @@ if you have any suggestions or find any bugs.
 This project is licensed under the MIT License. See the LICENSE file for details.
 
 ## Contact
-For any questions or suggestions, please contact Jon at W5ALC@SKYHUB.com
+For any questions or suggestions, please contact Jon at W5ALC@SKYHUB.COM
 
 Thank you for using the SkyHubLink Monday Night Net Script.
 We hope it helps you run effective and engaging nets!
